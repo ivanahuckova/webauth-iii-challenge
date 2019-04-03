@@ -14,8 +14,13 @@ function getAllUsers() {
   return db('users');
 }
 
+function getAllUsersFromDepartment(department) {
+  return db('users').where({ department: department });
+}
+
 module.exports = {
   addUser,
   findUserByName,
-  getAllUsers
+  getAllUsers,
+  getAllUsersFromDepartment
 };

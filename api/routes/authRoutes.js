@@ -29,13 +29,13 @@ routes.post('/register', async (req, res) => {
 });
 
 //========== LOGIN ========= //
-//Helper functions
+//Create Token
 
 function makeTokenFromUser(user) {
   const payload = {
     subject: user.id,
     username: user.username,
-    roles: user.department
+    department: user.department
   };
   const token = jwt.sign(payload, process.env.TOKEN_SECRET);
   return token;
