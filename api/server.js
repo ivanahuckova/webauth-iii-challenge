@@ -9,6 +9,7 @@ dotenv.config();
 const authRoutes = require('./routes/authRoutes');
 
 //DB Import
+const db = require('../data/dbConfig');
 
 //Middleware Import
 
@@ -23,5 +24,9 @@ server.use(cors());
 
 //Server use routes
 server.use('/api', authRoutes);
+
+server.get('/', (req, res) => {
+  res.status(200).json('It is working');
+});
 
 module.exports = server;
