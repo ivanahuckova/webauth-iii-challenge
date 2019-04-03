@@ -7,13 +7,17 @@ const Users = require('../../data/dbModels');
 
 const routes = express.Router();
 
-//========== REGISTER ROUTE ========= //
+//========== REGISTER ========= //
+//Route
 routes.post('/register', async (req, res) => {
   try {
     let { username, password, department } = req.body;
+
     if (username && password && department) {
+      //password hashing
       let hashedPasword = bcrypt.hashSync(password, 10);
       password = hashedPasword;
+      //create new user and store hashed password
       const newUser = await Users.addUser(username, password, department);
       res.status(201).json({ id: newUser[0], username, password, department });
     } else {
@@ -24,15 +28,30 @@ routes.post('/register', async (req, res) => {
   }
 });
 
-//========== LOGIN ROUTE ========= //
+//========== LOGIN ========= //
+//Helper functions
+
+function makeTokenFromUser(user) {
+  const payload = {
+    subject: user.id,
+    username: user.username,
+    roles: user.department
+  };
+  const token = jwt.sign(payload, process.env.TOKEN_SECRET);
+  return token;
+}
+//Route
 routes.post('/login', async (req, res) => {
   try {
     let { username, password } = req.body;
     if (username && password) {
+      //get user by username
       const specificUser = await Users.findUserByName(username);
+      //check if passwords match - as one is hashed and one is not, use bcrupt
       const doPasswordsMatch = bcrypt.compareSync(password, specificUser.password);
       if (specificUser && doPasswordsMatch) {
-        res.status(200).json({ message: `Welcome ${username}!` });
+        const token = makeTokenFromUser(specificUser);
+        res.status(200).json({ message: `Welcome ${username}!`, token });
       } else {
         res.status(400).json({ message: `Invalid credentials` });
       }
