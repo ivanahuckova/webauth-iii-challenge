@@ -8,9 +8,6 @@ dotenv.config();
 //Routes Importt
 const authRoutes = require('./routes/authRoutes');
 
-//DB Import
-const db = require('../data/dbConfig');
-
 //Middleware Import
 
 //Server
