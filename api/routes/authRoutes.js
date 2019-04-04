@@ -40,6 +40,7 @@ function makeTokenFromUser(user) {
   const token = jwt.sign(payload, process.env.TOKEN_SECRET);
   return token;
 }
+
 //Route
 routes.post('/login', async (req, res) => {
   try {

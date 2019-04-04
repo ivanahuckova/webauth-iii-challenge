@@ -9,12 +9,8 @@ dotenv.config();
 const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
 
-//Middleware Import
-
 //Server
 const server = express();
-
-//Cookie configuration
 
 server.use(helmet());
 server.use(express.json());
