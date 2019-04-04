@@ -14,6 +14,7 @@ export default function Login(props) {
         password: passwordRef.current.value
       })
       .then(res => {
+        localStorage.setItem('department', res.data.department);
         localStorage.setItem('token', res.data.token);
         setMessage(`${res.data.message}`);
       })
