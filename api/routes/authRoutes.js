@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 //Users DB Model
-const Users = require('../../data/dbModels');
+const Users = require('../../data/dbQueries');
 
 const routes = express.Router();
 

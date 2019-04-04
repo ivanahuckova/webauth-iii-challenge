@@ -2,7 +2,7 @@ const express = require('express');
 const isAuthorized = require('../middleware/authorization');
 
 //Users DB Model
-const Users = require('../../data/dbModels');
+const Users = require('../../data/dbQueries');
 
 const routes = express.Router();
 
