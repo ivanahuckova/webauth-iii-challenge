@@ -8,7 +8,7 @@ function Navbar(props) {
   };
   return (
     <div>
-      <NavLink to="/">Login</NavLink>
+      <NavLink to="/login">Login</NavLink>
       <NavLink to="/register">Register</NavLink>
       <NavLink to="/users">Users</NavLink>
       <NavLink to="/department">Department</NavLink>
